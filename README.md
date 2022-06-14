@@ -11,7 +11,7 @@
 К проекту прилагается документация, в которой описаны тестовые сценарии, а также issues и отчёт о тестировании. 
 1. [План работы](https://github.com/taniakku/Autotest-module-project/blob/master/Plan.md).
 2. [Issues проекта](https://github.com/taniakku/Autotest-module-project/issues).
-3. [Отчёт о тестировании]().
+3. [Отчёт о тестировании](https://github.com/taniakku/Autotest-module-project/blob/master/Report.md).
 
 ### Как запустить проект 
 1. Склонировать удалённый репозиторий на текущей странице на локальную машину. Это можно сделать при помощи консоли git командой `git clone <ссылка на репозиторий>`. Ссылку для клонирования можно найти на странице репозитория в выпадающем окне по кнопке **Code**. 
