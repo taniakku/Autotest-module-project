@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.Keys.CONTROL;
 import static org.openqa.selenium.Keys.DELETE;
+import io.qameta.allure.Step;
 
 public class PayDebit {
 
@@ -24,14 +25,10 @@ public class PayDebit {
     private SelenideElement successfulNotification = $(".notification_status_ok");
     private SelenideElement unsuccessfulNotification = $(".notification_status_error");
     private SelenideElement requiredFieldError = $(byText("Поле обязательно для заполнения")).parent().$(".input__sub");
-    private SelenideElement cardInvalidDatesError = $(byText("Неверно указан срок действия карты")).parent().$(".input__sub");
+    private SelenideElement cardInvalidDatesError = $(withText("Неверно указан срок действия карты"));
     private SelenideElement cardExpiredDatesError = $(withText("Истёк срок действия карты"));
+    private SelenideElement popUpNotification = $(".notification");
 
-
-    public PayDebit payTourByCard() {
-        payButton.click();
-        return new PayDebit();
-    }
 
     public PayDebit() {
         header.shouldBe(visible).shouldHave(exactText("Оплата по карте"));
@@ -45,6 +42,7 @@ public class PayDebit {
         cvvNumberField.sendKeys(CONTROL + "A", DELETE);
     }
 
+    @Step("Форма заполнена данными")
     public void sendData(String card, String month, String year, String name, String cvv) {
         clearField();
         cardNumberField.setValue(card);
@@ -55,37 +53,44 @@ public class PayDebit {
         nextButton.click();
     }
 
-
+    @Step("Заполняем форму валидными данными: карта одобрена")
     public void successfulSendingForm(String card, String month, String year, String name, String cvv) {
         sendData(card, month, year, name, cvv);
         successfulNotification.shouldBe(visible, Duration.ofSeconds(13)).shouldHave(exactText("Успешно\n" + "Операция одобрена Банком."));
     }
 
-
+    @Step("Заполняем форму невалидными данными карты: карта просрочена")
     public void unsuccessfulSendingForm(String card, String month, String year, String name, String cvv) {
         sendData(card, month, year, name, cvv);
-        unsuccessfulNotification.shouldBe(visible, Duration.ofSeconds(13)).shouldHave(exactText("Ошибка\n" + "Ошибка! Банк отказал в проведении операции."));
+        unsuccessfulNotification.shouldBe(visible, Duration.ofSeconds(16)).shouldHave(exactText("Ошибка\n" + "Ошибка! Банк отказал в проведении операции."));
     }
 
+    @Step("Заполняем форму невалидными данными: неверный формат")
     public void formatError(String card, String month, String year, String name, String cvv) {
         sendData(card, month, year, name, cvv);
         wrongFormatError.shouldBe(visible);
     }
 
+    @Step("Не заполняем форму")
     public void emptyFieldError(String card, String month, String year, String name, String cvv) {
         sendData(card, month, year, name, cvv);
         requiredFieldError.shouldBe(visible);
     }
 
+    @Step("Заполняем форму невалидными данными: невалидная дата")
     public void cardInvalidDatesError(String card, String month, String year, String name, String cvv) {
         sendData(card, month, year, name, cvv);
         cardInvalidDatesError.shouldBe(visible);
     }
 
+    @Step("Заполняем форму невалидными данными: карта просрочена")
     public void cardExpiredDatesError(String card, String month, String year, String name, String cvv) {
         sendData(card, month, year, name, cvv);
         cardExpiredDatesError.shouldBe(visible);
     }
 
+    public void popUpNotification() {
+        popUpNotification.shouldBe(visible, Duration.ofSeconds(13));
+    }
 
 }

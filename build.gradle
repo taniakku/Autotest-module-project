@@ -4,6 +4,7 @@ plugins {
     id 'io.qameta.allure' version '2.9.6'
 }
 
+
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
@@ -11,22 +12,28 @@ sourceCompatibility = 11
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
+allure {
+    version = '2.18.1'
+    useJUnit5 {
+        version = '2.18.1'
+    }
+}
 repositories {
     mavenCentral()
-
 }
 
 dependencies {
-    implementation 'org.projectlombok:lombok:1.18.16'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
-    testImplementation 'com.codeborne:selenide:5.19.0'
-    testImplementation 'com.github.javafaker:javafaker:1.0.2'
-    testImplementation 'org.postgresql:postgresql:42.2.23'
-    testImplementation 'commons-dbutils:commons-dbutils:1.7'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation 'com.codeborne:selenide:6.6.1'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'io.qameta.allure:allure-selenide:2.18.1'
+    testImplementation 'io.qameta.allure:allure-junit5:2.18.1'
+    testImplementation 'org.postgresql:postgresql:42.3.6'
+    testImplementation 'commons-dbutils:commons-dbutils:1.7'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
 }
 
 test {
