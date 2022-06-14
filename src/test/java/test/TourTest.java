@@ -132,8 +132,8 @@ public class TourTest {
     @Epic("Покупка по дебетовой карте")
     @Feature("Негативные сценарии")
     @Story("Активная карта, заполнение данных")
-    @Description("Заполнение и отправка формы с именем из цифр")
-    void shouldPayForTheTourInvalidDataNameWithDigits() { //тут скорее всего тоже баг, не будет сообщения о неверном формате
+    @Description("Заполнение и отправка формы с именем из цифр + больше 30 символов")
+    void shouldPayForTheTourInvalidDataNameWithDigits() { 
         var debitPaymentPage = startPage.debitBuy();
         var declinedPaymentBecauseOfName = DataGenerator.anyCardInvalidNameWithDigits();
         debitPaymentPage.formatError(declinedPaymentBecauseOfName.getCardNumber(), declinedPaymentBecauseOfName.getMonth(), declinedPaymentBecauseOfName.getYear(),
