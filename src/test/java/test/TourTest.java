@@ -120,7 +120,7 @@ public class TourTest {
     @Feature("Негативные сценарии")
     @Story("Активная карта, заполнение данных")
     @Description("Заполнение и отправка формы с именем на кириллице")
-    void shouldPayForTheTourInvalidDataName() { //тут баг - можно отправить форму с именем на кириллице, сообщения о неверном формате нет
+    void shouldPayForTheTourInvalidDataName() { 
         var debitPaymentPage = startPage.debitBuy();
         var declinedPaymentBecauseOfName = DataGenerator.anyCardInvalidName();
         debitPaymentPage.formatError(declinedPaymentBecauseOfName.getCardNumber(), declinedPaymentBecauseOfName.getMonth(), declinedPaymentBecauseOfName.getYear(),
