@@ -67,7 +67,6 @@ public class DataBaseTest {
     @Feature("БД сохраняет статус платежа")
     @Story("Дефолтная карта в статусе declined")
     @Description("БД сохраняет операцию по недействующей карте как отклонённую")
-        // это баг, т.к. карта, которая должна быть DECLINED, записывается как approved
     void shouldSaveDataAboutDeclinedCard() {
         var paymentPage = startPage.debitBuy();
         var declinedPayment = DataGenerator.cardDeclined();
