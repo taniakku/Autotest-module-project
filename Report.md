@@ -13,3 +13,7 @@
 
 ### Багрепорты
 Сформированные багрепорты можно найти на странице [Issues проекта](https://github.com/taniakku/Autotest-module-project/issues).
+Дополнительный репорт по команде './gradlew allureServe' [по ссылке](https://github.com/taniakku/Autotest-module-project/issues/7).
+
+### Отчёт о тестировании в формате gradle 
+![image](https://user-images.githubusercontent.com/92716239/175772150-132eb3a3-4ea0-47d2-8f6a-f24b4e4432e2.png)
